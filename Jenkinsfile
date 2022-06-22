@@ -47,11 +47,24 @@ pipeline {
       }
 
       stage ('Tagging remote') {
+         when {
+            expression {
+               return params.Tag_remote.equals('true')
+            }
+         }
+         
          steps {
             echo 'Tagging remote ...'
 
          }
       }
+
+      stage('Pipeline ending') {
+         steps {
+            echo 'The pipeline is ending'
+         }
+      }
+
 
    }
 
