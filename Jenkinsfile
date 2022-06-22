@@ -42,6 +42,14 @@ pipeline {
             }
             steps {
                echo "Testing release ${RELEASE}"
+
+               script {
+                  if (params.Tag_remote.equals('true')){
+                     env.TAG_REMOTE = 'true'
+                  } else {
+                     env.TAG_REMOTE = 'false'
+                  }
+               }
                               
             }
       }
@@ -49,7 +57,7 @@ pipeline {
       stage ('Tagging remote') {
          when {
             expression {
-               return params.Tag_remote.equals('true')
+               return env.TAG_REMOTE.equals('true')
             }
          }
          
