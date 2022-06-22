@@ -44,7 +44,15 @@ pipeline {
                echo "Testing release ${RELEASE}"
                               
             }
-        }
+      }
+
+      stage ('Tagging remote') {
+         steps {
+            echo 'Tagging remote ...'
+
+         }
+      }
+
    }
 
 }
