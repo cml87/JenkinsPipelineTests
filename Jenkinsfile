@@ -19,9 +19,7 @@ pipeline {
         choice(
                 name: 'Tag_remote',
                 choices: 'true\nfalse',
-                description: '''
-                                 Hosts where the Ansible playbook will run on. Choose \"all\" to deploy on every host for the specified inventory
-                             '''
+                description: '''Hosts where the Ansible playbook will run on. Choose \"all\" to deploy on every host for the specified inventory'''
         )
 
 
