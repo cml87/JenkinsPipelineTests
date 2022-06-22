@@ -6,16 +6,22 @@ pipeline {
 
        parameters {
         choice(
-                name: 'INVENTORY',
-                choices: ['inventories/staging/ubim2-validation/hosts.yml', "inventories/staging/fuc-debian11/hosts.yml", "inventories/production/tub-debian11/hosts.yml",'inventories/production/fub-debian11/hosts.yml'],
-                description: 'Target inventory'
+                name: 'Person name',
+                choices: ['Pepito', 'Juanito'],
+                description: 'A name is a term used for identification by an external observer. They can identify a class or category of things,' + 
+                            'or a single thing, either uniquely, or within a given context. The entity identified by a name is called its referent. ' +
+                            'A personal name identifies, not necessarily uniquely, a specific individual human. The name of a specific entity is ' +
+                            ' sometimes called a proper name (although that term has a philosophical meaning as well) and is, when consisting of only ' + 
+                            'one word, a proper noun. Other nouns are sometimes called "common names" or (obsolete) "general names". A name can be' + 
+                            ' given to a person, place, or thing; for example, parents can give their child a name or a scientist can give an element a name.'
         )
 
         choice(
-                name: 'TARGET_HOSTS',
-                choices: 'Choose host for the proper inventory\n------\nall\n------\nhqit-valubim11-01\nhqit-valubim11-02\nhqit-valubim11-03\nhqit-valubim11-04\n------\nfuc-ubim11-01\nfuc-ubim11-02\nfuc-ubim11-03\nfuc-ubim11-04\n------\nfub-ubim11-01\nfub-ubim11-02\nfub-ubim11-03\nfub-ubim11-04\n------\ntub-ubim11-01\ntub-ubim11-02\ntub-ubim11-03\ntub-ubim11-04',
-                description: '''Hosts where the Ansible playbook will run on. Choose \"all\" to deploy on every host for the specified inventory
-            '''
+                name: 'Tag_remote',
+                choices: 'true\nfalse',
+                description: '''
+                                 Hosts where the Ansible playbook will run on. Choose \"all\" to deploy on every host for the specified inventory
+                             '''
         )
 
 
