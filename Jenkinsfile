@@ -19,13 +19,9 @@ pipeline {
             }
             steps {
                echo "Testing release ${RELEASE}"
-               writeFile file: 'test-results.txt', text: "${FILE_CONTENT}"               
+                              
             }
         }
    }
-   post {
-      success {
-         archiveArtifacts 'test-results.txt'
-      }
-   }
+
 }
