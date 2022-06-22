@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    environment {
+      RELEASE='20.04'
+    }
+   stages {
+      stage('Build') {
+            environment {
+               LOG_LEVEL='INFO'
+            }
+            steps {
+               echo "Building release ${RELEASE} with log level ${LOG_LEVEL}..."
+            }
+        }
+      stage('Test') {
+            environment {
+               FILE_CONTENT = "This is the content I want to write in the file.\n" +
+                                "It is a very important content as you can see."
+            }
+            steps {
+               echo "Testing release ${RELEASE}"
+               writeFile file: 'test-results.txt', text: "${FILE_CONTENT}"               
+            }
+        }
+   }
+   post {
+      success {
+         archiveArtifacts 'test-results.txt'
+      }
+   }
+}
