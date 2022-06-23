@@ -33,8 +33,9 @@ pipeline {
             steps {
                echo "Testing release ${RELEASE}"
             
-                String word = 'bla'           
                script {
+                  String word = 'bla'           
+                
                   if (params.Throw_error.equals('true')){
                      word = null
                   }
