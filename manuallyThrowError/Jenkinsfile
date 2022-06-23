@@ -32,11 +32,16 @@ pipeline {
             }
             steps {
                echo "Testing release ${RELEASE}"
-
+            
+                String word = 'bla'           
                script {
                   if (params.Throw_error.equals('true')){
+                     word = null
+                  }
+                  if (word == null) {
                      sh 'exit 1'
-                  } 
+                  }
+
                }
                               
             }
