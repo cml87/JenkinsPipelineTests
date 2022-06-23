@@ -1,0 +1,62 @@
+pipeline {
+   agent any
+   environment {
+      RELEASE='20.04'
+   }
+
+       parameters {
+
+        choice(
+                name: 'Throw_error',
+                choices: 'true\nfalse',
+                description: '''Hosts where the Ansible playbook will run on. Choose \"all\" to deploy on every host for the specified inventory'''
+        )
+
+
+    }
+
+
+   stages {
+      stage('Build') {
+            environment {
+               LOG_LEVEL='INFO'
+            }
+            steps {
+               echo "Building release ${RELEASE} with log level ${LOG_LEVEL}..."
+            }
+        }
+      stage('Test') {
+            environment {
+               FILE_CONTENT = "This is the content I want to write in the file.\n" +
+                                "It is a very important content as you can see."
+            }
+            steps {
+               echo "Testing release ${RELEASE}"
+
+               script {
+                  if (params.Throw_error.equals('true')){
+                     sh 'exit 1'
+                  } 
+               }
+                              
+            }
+      }
+
+      stage ('Tagging remote') {
+         
+         steps {
+            echo 'Tagging remote ...'
+
+         }
+      }
+
+      stage('Pipeline ending') {
+         steps {
+            echo 'The pipeline is ending'
+         }
+      }
+
+
+   }
+
+}
