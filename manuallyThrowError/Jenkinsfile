@@ -40,7 +40,11 @@ pipeline {
                      word = null
                   }
                   if (word == null) {
-                     echo "ERROR: word is null !"
+                     echo '''
+                            ERROR: word is null !
+                            jflkasdfj
+                            fasdfdsafasdf
+                          '''
                      sh 'exit 1'
                   }
 
